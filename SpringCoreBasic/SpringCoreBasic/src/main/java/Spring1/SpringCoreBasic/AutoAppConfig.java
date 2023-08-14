@@ -1,8 +1,5 @@
 package Spring1.SpringCoreBasic;
 
-import Spring1.SpringCoreBasic.member.MemberRepository;
-import Spring1.SpringCoreBasic.member.MemoryMemberRepository;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
@@ -14,8 +11,8 @@ import org.springframework.context.annotation.FilterType;
 )
 public class AutoAppConfig {
 
-    @Bean(name = "memoryMemberRepository")
+/*    @Bean(name = "memoryMemberRepository")
     MemberRepository memberRepository() {
         return new MemoryMemberRepository();
-    }
+    }*/
 }
