@@ -32,7 +32,6 @@ public class ErrorPageController {
         return "error-page/404";
     }
 
-
     @RequestMapping("/error-page/500")
     public String errorPage500(HttpServletRequest request, HttpServletResponse response) {
         log.info("errorPage 500");
@@ -41,7 +40,9 @@ public class ErrorPageController {
     }
 
     @RequestMapping(value = "/error-page/500", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Map<String, Object>> errorPage500Api(HttpServletRequest request, HttpServletResponse response) {
+    public ResponseEntity<Map<String, Object>> errorPage500Api(
+            HttpServletRequest request, HttpServletResponse response) {
+
         log.info("API errorPage 500");
 
         Map<String, Object> result = new HashMap<>();
@@ -60,6 +61,6 @@ public class ErrorPageController {
         log.info("ERROR_REQUEST_URI: {}", request.getAttribute(ERROR_REQUEST_URI));
         log.info("ERROR_SERVLET_NAME: {}", request.getAttribute(ERROR_SERVLET_NAME));
         log.info("ERROR_STATUS_CODE: {}", request.getAttribute(ERROR_STATUS_CODE));
-        log.info("dispatcherType={}", request.getDispatcherType());
+        log.info("dispatchType={}", request.getDispatcherType());
     }
 }

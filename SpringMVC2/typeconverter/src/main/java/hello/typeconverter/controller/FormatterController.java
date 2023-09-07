@@ -13,8 +13,9 @@ import java.time.LocalDateTime;
 
 @Controller
 public class FormatterController {
+
     @GetMapping("/formatter/edit")
-    String formatterForm(Model model) {
+    public String formatterForm(Model model) {
         Form form = new Form();
         form.setNumber(10000);
         form.setLocalDateTime(LocalDateTime.now());
@@ -35,5 +36,4 @@ public class FormatterController {
         @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime localDateTime;
     }
-
 }

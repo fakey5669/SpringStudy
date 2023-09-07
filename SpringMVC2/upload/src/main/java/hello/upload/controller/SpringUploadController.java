@@ -17,6 +17,7 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/spring")
 public class SpringUploadController {
+
     @Value("${file.dir}")
     private String fileDir;
 
@@ -28,6 +29,7 @@ public class SpringUploadController {
     @PostMapping("/upload")
     public String saveFile(@RequestParam String itemName,
                            @RequestParam MultipartFile file, HttpServletRequest request) throws IOException {
+
         log.info("request={}", request);
         log.info("itemName={}", itemName);
         log.info("multipartFile={}", file);
@@ -37,6 +39,7 @@ public class SpringUploadController {
             log.info("파일 저장 fullPath={}", fullPath);
             file.transferTo(new File(fullPath));
         }
+
         return "upload-form";
     }
 }

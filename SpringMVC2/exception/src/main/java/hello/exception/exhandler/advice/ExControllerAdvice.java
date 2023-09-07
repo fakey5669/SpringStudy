@@ -1,6 +1,6 @@
 package hello.exception.exhandler.advice;
 
-import hello.exception.exeption.UserException;
+import hello.exception.exception.UserException;
 import hello.exception.exhandler.ErrorResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -24,7 +24,7 @@ public class ExControllerAdvice {
     public ResponseEntity<ErrorResult> userExHandler(UserException e) {
         log.error("[exceptionHandler] ex", e);
         ErrorResult errorResult = new ErrorResult("USER-EX", e.getMessage());
-        return new ResponseEntity<>(errorResult, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(errorResult, HttpStatus.BAD_REQUEST);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -33,4 +33,5 @@ public class ExControllerAdvice {
         log.error("[exceptionHandler] ex", e);
         return new ErrorResult("EX", "내부 오류");
     }
+
 }

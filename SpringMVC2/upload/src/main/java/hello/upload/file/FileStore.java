@@ -48,9 +48,10 @@ public class FileStore {
         return uuid + "." + ext;
     }
 
-    private static String extractExt(String originalFilename) {
+    private String extractExt(String originalFilename) {
         int pos = originalFilename.lastIndexOf(".");
         return originalFilename.substring(pos + 1);
     }
+
 
 }

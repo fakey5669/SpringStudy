@@ -40,30 +40,31 @@ public class ServletUploadControllerV2 {
         Collection<Part> parts = request.getParts();
         log.info("parts={}", parts);
 
-        try {
-            for (Part part : parts) {
-                log.info("=== PART ===");
-                log.info("name={}", part.getName());
-                Collection<String> headerNames = part.getHeaderNames();
-                for (String headerName : headerNames) {
-                    log.info("header {}: {}", headerName, part.getHeader(headerName));
-                }
-                log.info("submittedFilename={}", part.getSubmittedFileName());
-                log.info("size={}", part.getSize());
-
-                InputStream inputStream = part.getInputStream();
-                String body = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
-                log.info("body={}", body);
-                inputStream.close();
-                if (StringUtils.hasText(part.getSubmittedFileName())) {
-                    String fullPath = fileDir + part.getSubmittedFileName();
-                    log.info("파일저장 fullPath={}", fullPath);
-                    part.write(fullPath);
-                }
+        for (Part part : parts) {
+            log.info("==== PART ====");
+            log.info("name={}", part.getName());
+            Collection<String> headerNames = part.getHeaderNames();
+            for (String headerName : headerNames) {
+                log.info("header {}: {}", headerName, part.getHeader(headerName));
             }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+            //편의 메서드
+            //content-disposition; filename
+            log.info("submittedFilename={}", part.getSubmittedFileName());
+            log.info("size={}", part.getSize()); //part body size
+
+            //데이터 읽기
+            InputStream inputStream = part.getInputStream();
+            String body = StreamUtils.copyToString(inputStream, StandardCharsets.UTF_8);
+            log.info("body={}", body);
+
+            //파일에 저장하기
+            if (StringUtils.hasText(part.getSubmittedFileName())) {
+                String fullPath = fileDir + part.getSubmittedFileName();
+                log.info("파일 저장 fullPath={}", fullPath);
+                part.write(fullPath);
+            }
         }
+
         return "upload-form";
     }
 }

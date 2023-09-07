@@ -5,10 +5,12 @@
     <title>Title</title>
 </head>
 <body>
+
 <form th:object="${form}" th:method="post">
     number <input type="text" th:field="*{number}"><br/>
     localDateTime <input type="text" th:field="*{localDateTime}"><br/>
     <input type="submit"/>
 </form>
+
 </body>
 </html>

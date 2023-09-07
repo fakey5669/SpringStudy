@@ -6,8 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.mock.web.MockHttpServletResponse;
 
-import static org.assertj.core.api.Assertions.*;
+import javax.servlet.http.HttpServletResponse;
 
+import static org.assertj.core.api.Assertions.*;
 
 class SessionManagerTest {
 
@@ -15,6 +16,7 @@ class SessionManagerTest {
 
     @Test
     void sessionTest() {
+
         //세션 생성
         MockHttpServletResponse response = new MockHttpServletResponse();
         Member member = new Member();
@@ -32,5 +34,6 @@ class SessionManagerTest {
         sessionManager.expire(request);
         Object expired = sessionManager.getSession(request);
         assertThat(expired).isNull();
+
     }
 }

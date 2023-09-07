@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class ConverterController {
+
     @GetMapping("/converter-view")
     public String converterView(Model model) {
         model.addAttribute("number", 10000);

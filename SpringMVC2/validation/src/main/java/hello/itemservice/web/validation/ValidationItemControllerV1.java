@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 @Slf4j
 @Controller
 @RequestMapping("/validation/v1/items")
@@ -43,6 +44,7 @@ public class ValidationItemControllerV1 {
 
     @PostMapping("/add")
     public String addItem(@ModelAttribute Item item, RedirectAttributes redirectAttributes, Model model) {
+
         //검증 오류 결과를 보관
         Map<String, String> errors = new HashMap<>();
 
@@ -54,9 +56,10 @@ public class ValidationItemControllerV1 {
             errors.put("price", "가격은 1,000 ~ 1,000,000 까지 허용합니다.");
         }
         if (item.getQuantity() == null || item.getQuantity() >= 9999) {
-            errors.put("quantity", "수량은 최대9,999 까지 허용합니다.");
+            errors.put("quantity", "수량은 최대 9,999 까지 허용합니다.");
         }
 
+        //특정 필드가 아닌 복합 룰 검증
         if (item.getPrice() != null && item.getQuantity() != null) {
             int resultPrice = item.getPrice() * item.getQuantity();
             if (resultPrice < 10000) {
@@ -66,7 +69,7 @@ public class ValidationItemControllerV1 {
 
         //검증에 실패하면 다시 입력 폼으로
         if (!errors.isEmpty()) {
-            log.info("errors={} ", errors);
+            log.info("errors = {} ", errors);
             model.addAttribute("errors", errors);
             return "validation/v1/addForm";
         }

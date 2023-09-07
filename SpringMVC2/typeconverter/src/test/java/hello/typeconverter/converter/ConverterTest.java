@@ -1,9 +1,10 @@
 package hello.typeconverter.converter;
 
 import hello.typeconverter.type.IpPort;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 public class ConverterTest {
 
@@ -28,7 +29,7 @@ public class ConverterTest {
         String result = converter.convert(source);
         assertThat(result).isEqualTo("127.0.0.1:8080");
     }
-
+    
     @Test
     void ipPortToString() {
         StringToIpPortConverter converter = new StringToIpPortConverter();

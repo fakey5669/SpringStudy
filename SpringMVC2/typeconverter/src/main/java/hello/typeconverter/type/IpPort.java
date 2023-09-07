@@ -6,6 +6,7 @@ import lombok.Getter;
 @Getter
 @EqualsAndHashCode
 public class IpPort {
+
     private String ip;
     private int port;
 
