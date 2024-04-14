@@ -10,7 +10,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
-import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
 import javax.sql.DataSource;
@@ -19,8 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * JdbcTemplate
+ */
 @Slf4j
-@Repository
 public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
 
     private final JdbcTemplate template;
@@ -50,7 +51,11 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
     @Override
     public void update(Long itemId, ItemUpdateDto updateParam) {
         String sql = "update item set item_name=?, price=?, quantity=? where id=?";
-        template.update(sql, updateParam.getItemName(), updateParam.getPrice(), updateParam.getQuantity(), itemId);
+        template.update(sql,
+                updateParam.getItemName(),
+                updateParam.getPrice(),
+                updateParam.getQuantity(),
+                itemId);
     }
 
     @Override
@@ -70,10 +75,11 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
         Integer maxPrice = cond.getMaxPrice();
 
         String sql = "select id, item_name, price, quantity from item";
-//동적 쿼리
+        //동적 쿼리
         if (StringUtils.hasText(itemName) || maxPrice != null) {
             sql += " where";
         }
+
         boolean andFlag = false;
         List<Object> param = new ArrayList<>();
         if (StringUtils.hasText(itemName)) {
@@ -81,6 +87,7 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
             param.add(itemName);
             andFlag = true;
         }
+
         if (maxPrice != null) {
             if (andFlag) {
                 sql += " and";
@@ -88,18 +95,19 @@ public class JdbcTemplateItemRepositoryV1 implements ItemRepository {
             sql += " price <= ?";
             param.add(maxPrice);
         }
+
         log.info("sql={}", sql);
         return template.query(sql, itemRowMapper(), param.toArray());
     }
 
     private RowMapper<Item> itemRowMapper() {
-        return (((rs, rowNum) -> {
+        return ((rs, rowNum) -> {
             Item item = new Item();
             item.setId(rs.getLong("id"));
             item.setItemName(rs.getString("item_name"));
             item.setPrice(rs.getInt("price"));
             item.setQuantity(rs.getInt("quantity"));
             return item;
-        }));
+        });
     }
 }

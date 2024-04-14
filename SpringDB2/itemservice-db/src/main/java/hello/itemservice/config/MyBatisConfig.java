@@ -1,6 +1,7 @@
 package hello.itemservice.config;
 
 import hello.itemservice.repository.ItemRepository;
+import hello.itemservice.repository.jdbctemplate.JdbcTemplateItemRepositoryV3;
 import hello.itemservice.repository.mybatis.ItemMapper;
 import hello.itemservice.repository.mybatis.MyBatisItemRepository;
 import hello.itemservice.service.ItemService;
@@ -24,4 +25,5 @@ public class MyBatisConfig {
     public ItemRepository itemRepository() {
         return new MyBatisItemRepository(itemMapper);
     }
+
 }

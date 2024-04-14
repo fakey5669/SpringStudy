@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/SpringCoreBasic/SpringCoreBasic" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC1/item-service" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC1/servlet" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC1/springmvc" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC2/form" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC2/login" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC2/message" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC2/thymeleaf-basic" />
+    <file type="web" url="file://$PROJECT_DIR$/SpringMVC2/validation" />
+  </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

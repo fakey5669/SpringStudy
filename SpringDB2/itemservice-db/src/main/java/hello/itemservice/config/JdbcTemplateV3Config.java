@@ -25,4 +25,5 @@ public class JdbcTemplateV3Config {
     public ItemRepository itemRepository() {
         return new JdbcTemplateItemRepositoryV3(dataSource);
     }
+
 }
